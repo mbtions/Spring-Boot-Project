@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+    th:replace="~{base :: parent(~{::#about_content}, ~{::title}, ~{::script})}">
+
+<head>
+    <title>About</title>
+</head>
+
+<body>
+    <section id="about_content">
+        <h1>Welcome to About Page</h1>
+    </section>
+
+    <script>
+        console.log("about");
+    </script>
+</body>
+
+</html>

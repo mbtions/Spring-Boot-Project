@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#register_content}, ~{::title}, ~{::script})}">
+
+<head>
+    <title>Sign Up</title>
+</head>
+
+<body>
+    <div id="register_content">
+        <div class="flex items-center justify-center mt-4">
+            <div class="w-full max-w-md p-4 bg-white rounded-xl sm:p-6 md:p-8 dark:bg-gray-800 shadow-lg">
+                <div th:replace="~{message :: messagebox}"></div>
+                <h5 class="text-xl font-medium text-gray-900 dark:text-white">Sign Up</h5>
+                <p class="font-normal py-1">Start managing your contacts on cloud</p>
+                <!-- sign up form -->
+                <form class="space-y-6 mt-5" th:action="@{'/do-register'}" method="post" th:object="${userForm}">
+                    <div>
+                        <label for="name"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                        <input type="text" name="name" id="name" th:field="*{name}"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                            placeholder="Enter here" novalidate />
+                        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-red-600 py-2"></p>
+                    </div>
+                    <div>
+                        <label for="email"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                        <input name="email" id="email" th:field="*{email}"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                            placeholder="name@company.com" novalidate />
+                        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-red-600 py-2"></p>
+                    </div>
+                    <div>
+                        <label for="password"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                        <input type="password" name="password" id="password" th:field="*{password}"
+                            placeholder="••••••••"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                            novalidate />
+                        <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-red-600 py-2">
+                        </p>
+                    </div>
+                    <div>
+                        <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contact
+                            Number</label>
+                        <input type="number" name="phone" id="phone" th:field="*{phoneNumber}"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                            placeholder="Ex. 9912345678" novalidate />
+                        <p th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"
+                            class="text-red-600 py-2"></p>
+                    </div>
+                    <div>
+                        <label for="about" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Write
+                            something about yourself
+                        </label>
+                        <textarea type="text" name="about" id="about" rows="4" th:field="*{about}"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                            placeholder="Write here..." novalidate></textarea>
+                        <p th:if="${#fields.hasErrors('about')}" th:errors="*{about}" class="text-red-600 py-2"></p>
+                    </div>
+                    <div class="flex justify-center space-x-5">
+                        <button type="submit"
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            Sign Up</button>
+                        <button type="reset"
+                            class="text-blue-700 hover:text-blue-800 bg-slate-50 border-2 border-blue-700 hover:border-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-blue-600 dark:hover:border-blue-600 dark:focus:ring-blue-800">
+                            Reset</button>
+                    </div>
+                    <div class="text-sm text-center font-medium text-gray-500 dark:text-gray-300">
+                        Already have an account? <a th:href="@{'/login'}"
+                            class="text-blue-700 hover:underline dark:text-blue-500">Login
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <script>console.log("sign up page");</script>
+</body>
+
+</html>
