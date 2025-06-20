@@ -3,12 +3,15 @@ package com.scm.services.implementation;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.scm.entities.Contact;
 import com.scm.helpers.ResourceNotFoundException;
 import com.scm.repositories.ContactRepository;
 import com.scm.services.ContactService;
+import com.scm.entities.User;
 
+@Service
 public class ContactServicesImplementation implements ContactService {
 
     @Autowired
@@ -54,6 +57,11 @@ public class ContactServicesImplementation implements ContactService {
     public Contact getById(String id) {
         return contactRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Contact not found with id: " + id));
+    }
+
+    @Override
+    public List<Contact> getByUser(User user) {
+        return contactRepository.findByUser(user);
     }
 
 }

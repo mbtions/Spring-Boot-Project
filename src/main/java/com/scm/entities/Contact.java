@@ -33,8 +33,11 @@ public class Contact {
     private String websiteLink;
     private String socialLink;
 
-    @OneToMany(mappedBy = "contact", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-    private List<SocialLink> links = new ArrayList<>();
+    private String cloudinaryImagePublicId;
+
+    // @OneToMany(mappedBy = "contact", cascade = CascadeType.ALL, fetch =
+    // FetchType.EAGER, orphanRemoval = true)
+    // private List<SocialLink> links = new ArrayList<>();
 
     @ManyToOne
     private User user;
