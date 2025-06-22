@@ -8,6 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
   toggleTheme();
 });
 
+document.addEventListener("load", () => {
+  // initially setting the theme
+  toggleTheme();
+});
+
 function toggleTheme() {
   // init: set to web
   // document.querySelector("html").classList.add(currentTheme);
@@ -44,16 +49,15 @@ function getTheme() {
 function changePageTheme(newTheme, oldTheme) {
   // update theme to local storage
   setTheme(newTheme);
-
+  console.log("New theme set: " + newTheme);
   // remove the intial theme on toggle button press
   document.querySelector("html").classList.remove(oldTheme);
-
+  console.log("Old Theme removed: " + oldTheme);
   // set theme to web also
   document.querySelector("html").classList.add(newTheme);
-
+  console.log("New theme added: " + newTheme);
   // change the toggle button text
   document
     .querySelector("#theme_change_button")
-    .querySelector("span").textContent =
-    currentTheme === "dark" ? "Light" : "Dark";
+    .querySelector("span").textContent = newTheme === "dark" ? "Light" : "Dark";
 }
