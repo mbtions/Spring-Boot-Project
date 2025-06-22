@@ -19,7 +19,7 @@
                 <div th:if="${param.logout}"
                     class="border-2 border-green-500 rounded-lg text-green-500 font-semibold text-center my-3 p-3">
                     You have been logged out.</div>
-                <form class="space-y-6 mt-5" method="post" th:action="@{'/authenticate'}">
+                <form class="space-y-6 mt-5" method="POST" th:action="@{'/authenticate'}">
 
                     <div>
                         <label for="email"
