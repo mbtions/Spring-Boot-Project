@@ -5,6 +5,7 @@ let currentTheme = getTheme();
 // on html document page loading
 document.addEventListener("DOMContentLoaded", () => {
   // initially setting the theme
+  console.log(localStorage.getItem("theme"));
   toggleTheme();
 });
 
