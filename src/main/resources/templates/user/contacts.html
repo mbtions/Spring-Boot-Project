@@ -20,15 +20,15 @@
                 <div class="contacts_container p-5">
 
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                        <form th:action="@{'/user/contacts/search'}">
+                        <form th:action="@{'/user/contacts/search'}" th:object="${contactSearchForm}">
                             <div
                                 class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">
 
                                 <!-- search by field container -->
                                 <div>
-                                    <select id="countries_disabled" name="searchBy"
+                                    <select id="countries_disabled" th:field="*{searchField}"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        <option selected>Search by</option>
+                                        <option selected value="">Search by</option>
                                         <option value="name">Name</option>
                                         <option value="phoneNumber">Phone</option>
                                         <option value="email">Email</option>
@@ -47,10 +47,9 @@
                                                 stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                         </svg>
                                     </div>
-                                    <input name="keyword" type="text" id="table-search-users"
+                                    <input th:field="*{fieldValue}" type="text" id="table-search-users"
                                         class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="Search for users">
-
                                 </div>
 
                                 <!-- search button -->
@@ -58,11 +57,11 @@
                                     class="rounded-lg text-white bg-black dark:bg-blue-600 px-3 py-2">Search</button>
                             </div>
                         </form>
-                        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        <table th:unless="${pageContact.empty}"
+                            class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                             <thead
                                 class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
-
                                     <th scope="col" class="px-6 py-3">
                                         Name
                                     </th>
@@ -116,7 +115,7 @@
                             </tbody>
                         </table>
                         <!-- Pagination -->
-                        <div class="pagination_container text-center p-5">
+                        <div th:unless="${pageContact.empty}" class="pagination_container text-center p-5">
                             <nav aria-label="Page navigation example">
                                 <ul class="inline-flex -space-x-px text-base h-10">
                                     <li th:unless="${pageContact.first}">
@@ -139,6 +138,8 @@
                                 </ul>
                             </nav>
                         </div>
+                        <!-- No Result Found -->
+                        <h1 th:if="${pageContact.empty}" class="p-5 text-center text-4xl">No Result Found</h1>
                     </div>
                 </div>
             </div>
