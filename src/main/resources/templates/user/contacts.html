@@ -108,7 +108,8 @@
                                         <div>
                                             <a href=""><i class="fa-solid w-6 h-6 fa-trash"></i></a>
                                             <a href=""><i class="fa-solid w-6 h-6 fa-pen"></i></a>
-                                            <a href=""><i class="fa-solid w-6 h-6 fa-eye"></i></a>
+                                            <button th:onclick="loadContactData([[${c.id}]])"><i
+                                                    class="fa-solid w-6 h-6 fa-eye"></i></button>
                                         </div>
                                     </td>
                                 </tr>
@@ -143,10 +144,16 @@
                     </div>
                 </div>
             </div>
+
+            <!-- view contact modal -->
+            <div th:replace="~{user/contact_modals :: contact}">
+
+            </div>
         </div>
 
     </div>
 
+    <script th:src="@{'/js/contacts.js'}"></script>
     <script>console.log("contacts page");</script>
 </body>
 
