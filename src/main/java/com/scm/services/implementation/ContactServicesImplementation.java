@@ -47,12 +47,6 @@ public class ContactServicesImplementation implements ContactService {
     }
 
     @Override
-    public List<Contact> search(String name, String email, String phoneNumber) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'search'");
-    }
-
-    @Override
     public List<Contact> getByUserId(String userId) {
         return contactRepository.findByUserId(userId);
     }
@@ -70,6 +64,30 @@ public class ContactServicesImplementation implements ContactService {
         // pageable object
         var pageable = PageRequest.of(page, size, sort);
         return contactRepository.findByUser(user, pageable);
+    }
+
+    @Override
+    public Page<Contact> searchByName(String nameKeyword, int page, int size, String sortField,
+            String sortDirection, User user) {
+        Sort sort = sortDirection.equals("desc") ? Sort.by(sortField).descending() : Sort.by(sortField).ascending();
+        var pageable = PageRequest.of(page, size, sort);
+        return contactRepository.findByUserAndNameContaining(user, nameKeyword, pageable);
+    }
+
+    @Override
+    public Page<Contact> searchByEmail(String emailKeyword, int page, int size, String sortField,
+            String sortDirection, User user) {
+        Sort sort = sortDirection.equals("desc") ? Sort.by(sortField).descending() : Sort.by(sortField).ascending();
+        var pageable = PageRequest.of(page, size, sort);
+        return contactRepository.findByUserAndEmailContaining(user, emailKeyword, pageable);
+    }
+
+    @Override
+    public Page<Contact> searchByPhoneNumber(String phoneNumberKeyword, int page, int size, String sortField,
+            String sortDirection, User user) {
+        Sort sort = sortDirection.equals("desc") ? Sort.by(sortField).descending() : Sort.by(sortField).ascending();
+        var pageable = PageRequest.of(page, size, sort);
+        return contactRepository.findByUserAndPhoneNumberContaining(user, phoneNumberKeyword, pageable);
     }
 
 }

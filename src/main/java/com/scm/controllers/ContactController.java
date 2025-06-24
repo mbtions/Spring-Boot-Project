@@ -28,6 +28,7 @@ import com.scm.services.UserService;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @RequestMapping("/user/contacts")
@@ -113,6 +114,34 @@ public class ContactController {
         model.addAttribute("pageSize", AppConstants.PAGE_SIZE);
 
         return "/user/contacts";
+    }
+
+    // search handler
+    @GetMapping("/search")
+    public String searchHandler(@RequestParam("searchBy") String searchField,
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "sortBy", defaultValue = "name") String sortBy,
+            @RequestParam(value = "direction", defaultValue = "asc") String direction,
+            @RequestParam(value = "size", defaultValue = AppConstants.PAGE_SIZE + "") int size,
+            @RequestParam("keyword") String fieldValue, Model model, Authentication authentication) {
+
+        Page<Contact> pageContact = null;
+
+        var user = userService.getUserByEmail(Helper.getEmailOfLoggedInUser(authentication));
+
+        if (searchField.equalsIgnoreCase("name")) {
+            pageContact = contactService.searchByName(fieldValue, page, size, sortBy, direction, user);
+        } else if (searchField.equalsIgnoreCase("email")) {
+            pageContact = contactService.searchByEmail(fieldValue, page, size, sortBy, direction, user);
+        } else if (searchField.equalsIgnoreCase("phoneNumber")) {
+            pageContact = contactService.searchByPhoneNumber(fieldValue, page, size, sortBy, direction, user);
+        }
+
+        model.addAttribute("pageContact", pageContact);
+        model.addAttribute("pageSize", AppConstants.PAGE_SIZE);
+        model.addAttribute("searchBy", searchField);
+        model.addAttribute("keyword", fieldValue);
+        return "user/search";
     }
 
 }
