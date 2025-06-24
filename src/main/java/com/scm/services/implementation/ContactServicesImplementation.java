@@ -3,6 +3,10 @@ package com.scm.services.implementation;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.scm.entities.Contact;
@@ -60,8 +64,12 @@ public class ContactServicesImplementation implements ContactService {
     }
 
     @Override
-    public List<Contact> getByUser(User user) {
-        return contactRepository.findByUser(user);
+    public Page<Contact> getByUser(User user, int page, int size, String sortField, String sortDirection) {
+        // sorting
+        Sort sort = sortDirection.equals("desc") ? Sort.by(sortField).descending() : Sort.by(sortField).ascending();
+        // pageable object
+        var pageable = PageRequest.of(page, size, sort);
+        return contactRepository.findByUser(user, pageable);
     }
 
 }
