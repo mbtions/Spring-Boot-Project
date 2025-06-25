@@ -1,5 +1,7 @@
 console.log("contacts.js");
 
+const baseUrl = "http://localhost:5050";
+
 const viewContactModal = document.getElementById("view_contact_modal");
 
 // options with default values
@@ -39,9 +41,7 @@ async function loadContactData(id) {
   console.log(id);
 
   try {
-    const contact = await (
-      await fetch(`http://localhost:5050/api/contacts/${id}`)
-    ).json();
+    const contact = await (await fetch(`${baseUrl}/api/contacts/${id}`)).json();
     console.log(contact);
 
     document.getElementById("contact_name").innerHTML = contact.name;
@@ -81,4 +81,39 @@ async function loadContactData(id) {
   } catch (error) {
     console.log("Error: ", error);
   }
+}
+
+// delete contact
+function deleteContact(id) {
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton:
+        "px-3 py-2 text-center text-white rounded-lg bg-gray-800 hover:bg-gray-900 dark:bg-blue-600 dark:hover:bg-blue-700",
+      cancelButton:
+        "m-4 px-3 py-2 border text-center text-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900",
+    },
+    buttonsStyling: false,
+  });
+  swalWithBootstrapButtons
+    .fire({
+      title: "Do you want to delete the contact?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, cancel!",
+      reverseButtons: true,
+    })
+    .then((result) => {
+      if (result.isConfirmed) {
+        const url = `${baseUrl}/user/contacts/delete/${id}`;
+        window.location.replace(url);
+
+        // swalWithBootstrapButtons.fire({
+        //   title: "Deleted!",
+        //   text: "Your contact has been deleted.",
+        //   icon: "success",
+        // });
+      }
+    });
 }
