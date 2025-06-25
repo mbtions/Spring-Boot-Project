@@ -7,6 +7,7 @@ import com.scm.entities.Contact;
 import com.scm.services.ContactService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -23,6 +24,18 @@ public class ApiController {
         return contactService.getById(contactId);
     }
 
-    // get all contacts
+    // delete contact
+    @DeleteMapping("/contacts/delete/{contactId}")
+    public boolean deleteContact(@PathVariable String contactId) {
+        contactService.delete(contactId);
+
+        // delete success
+        if (contactService.getById(contactId) == null) {
+            return true;
+        }
+
+        // delete fail
+        return false;
+    }
 
 }

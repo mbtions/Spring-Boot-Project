@@ -119,10 +119,15 @@
                                     </td>
                                     <td class="px-6 py-4">
                                         <div>
+                                            <!-- method 1: direct url delete -->
                                             <!-- <a th:href="@{'/user/contacts/delete/'+*{id}}"><i
                                                     class="fa-solid w-6 h-6 fa-trash"></i></a> -->
+                                            <!-- method 2: delete using js with alert -->
                                             <button th:onclick="deleteContact([[${c.id}]])"><i
                                                     class="fa-solid w-6 h-6 fa-trash"></i></button>
+                                            <!-- method 3: delete using js fetch api call -->
+                                            <!-- <button th:onclick="openApiDeleteContactModal([[${c.id}]])"><i
+                                                    class="fa-solid w-6 h-6 fa-trash"></i></button> -->
                                             <a href=""><i class="fa-solid w-6 h-6 fa-pen"></i></a>
                                             <button th:onclick="loadContactData([[${c.id}]])"><i
                                                     class="fa-solid w-6 h-6 fa-eye"></i></button>
@@ -164,6 +169,8 @@
             <!-- view contact modal -->
             <div th:replace="~{user/contact_modals :: contact}">
 
+                <!-- delete contact alert -->
+                <div th:replace="~{user/contact_modals :: delete_contact}"></div>
             </div>
         </div>
 
