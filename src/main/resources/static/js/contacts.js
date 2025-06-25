@@ -56,21 +56,27 @@ async function loadContactData(id) {
     if (contact.favorite) {
       contactFavorite.classList.remove("hidden");
       contactFavorite.innerHTML =
-        "<i class='fas fa-star h-4 w-4 text-yellow-400'></i><span class='pl-2'>Favorite</span>";
+        "<i class='fa-solid fa-heart h-6 w-6 text-blue-600'></i><span class='pl-1'>Favorite</span>";
       document.getElementById("contact_group").innerHTML = "Favorite";
     } else {
       contactFavorite.classList.add("hidden");
       document.getElementById("contact_group").innerHTML = "None";
     }
 
-    document.querySelector("#contact_website").href = contact.websiteLink;
-    document.querySelector("#contact_website").innerHTML = contact.websiteLink
-      ? contact.websiteLink
-      : "None";
-    document.querySelector("#contact_social_link").href = contact.socialLink;
+    if (contact.websiteLink) {
+      document.querySelector("#contact_website").href = contact.websiteLink;
+      document.querySelector("#contact_website").target = "_blank";
+      document.querySelector("#contact_website").innerHTML =
+        contact.websiteLink;
+    }
 
-    document.querySelector("#contact_social_link").innerHTML =
-      contact.socialLink ? contact.socialLink : "None";
+    if (contact.socialLink) {
+      document.querySelector("#contact_social_link").href = contact.socialLink;
+      document.querySelector("#contact_social_link").target = "_blank";
+      document.querySelector("#contact_social_link").innerHTML =
+        contact.socialLink;
+    }
+
     openContactModal();
   } catch (error) {
     console.log("Error: ", error);

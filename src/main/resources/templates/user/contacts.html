@@ -96,11 +96,21 @@
                                     </td>
                                     <td class="px-6 py-4">
                                         <div class="flex space-x-4 items-center">
-                                            <div th:if="*{favorite}" class="h-2.5 w-2.5 rounded-full bg-green-500 me-2">
+                                            <div th:if="*{favorite}">
+                                                <i class='fa-solid fa-heart h-6 w-6 text-blue-600'></i>
                                             </div>
-                                            <a th:href="@{*{websiteLink}}" target="_blank"><i
+                                            <div th:unless="*{favorite}">
+                                                <i class='fa-regular fa-heart h-6 w-6'></i>
+                                            </div>
+                                            <a th:if="${c.websiteLink.length() > 0}" th:href="@{*{websiteLink}}"
+                                                target="_blank"><i
+                                                    class="fa-solid fa-link text-blue-600 w-6 h-6"></i></a>
+                                            <a th:unless="${c.websiteLink.length() > 0}" href="#"><i
                                                     class="fa-solid fa-link w-6 h-6"></i></a>
-                                            <a th:href="@{*{socialLink}}" target="_blank"><i
+                                            <a th:if="${c.socialLink.length() > 0}" th:href="@{*{socialLink}}"
+                                                target="_blank"><i
+                                                    class="fa-brands fa-linkedin w-6 h-6 text-blue-600"></i></a>
+                                            <a th:unless="${c.socialLink.length() > 0}" href="#"><i
                                                     class="fa-brands fa-linkedin w-6 h-6"></i></a>
                                         </div>
                                     </td>
