@@ -21,75 +21,81 @@
                 </div>
                 <!-- Modal body -->
                 <div class="p-4 md:p-5 space-y-4">
-                    <div class="flex flex-col items-center pb-10">
+                    <div class="flex flex-col items-center pb-1">
                         <img onerror="this.src='https://www.shutterstock.com/image-vector/user-profile-icon-vector-avatar-600nw-2247726673.jpg'"
-                            id="contact_profile_image" class="w-24 h-24 mb-3 rounded-full shadow-lg" alt="" src="" />
+                            id="contact_profile_image" class="w-48 h-48 mb-3 bg-blue-400 rounded-full shadow-lg" alt=""
+                            src="" />
                         <h5 id="contact_name" class="text-xl font-medium text-gray-900 dark:text-white">Contact
                             name</h5>
                         <span id="contact_email" class="text-sm text-gray-500 dark:text-gray-400">Contact email</span>
                         <span id="contact_favorite"
                             class="mt-2 px-4 py-2 text-sm text-gray-500 rounded-lg border border-gray-200 dark:text-gray-400 dark:border-gray-600"></span>
                         <!-- contact information -->
-                        <table
-                            class="mt-5 w-full text-left text-sm text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                            <tbody>
-                                <tr class="border-b bg-white dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                                    <th scope="row"
-                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        <i class="fa-solid fa-phone h-4 w-4"></i> <span class="pl-2">Phone</span>
-                                    </th>
-                                    <td id="contact_phone_info" class="px-6 py-4">
-                                    </td>
-                                </tr>
-                                <tr class="border-b bg-white dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                                    <th scope="row"
-                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        <i class="fa-solid fa-location-dot h-4 w-4"></i><span
-                                            class="pl-2">Address</span>
-                                    </th>
-                                    <td id="contact_address" class="px-6 py-4">
+                        <div class="sm:rounded-lg w-full">
+                            <table
+                                class="mt-5 w-full text-left text-sm text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tbody>
+                                    <tr class="border-b bg-white dark:bg-gray-700 dark:border-gray-700 border-gray-200">
+                                        <th scope="row"
+                                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            <i class="fa-solid fa-phone h-4 w-4"></i> <span class="pl-2">Phone</span>
+                                        </th>
+                                        <td id="contact_phone_info" class="px-6 py-4">
+                                        </td>
+                                    </tr>
+                                    <tr class="border-b bg-white dark:bg-gray-700 dark:border-gray-700 border-gray-200">
+                                        <th scope="row"
+                                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            <i class="fa-solid fa-location-dot h-4 w-4"></i><span
+                                                class="pl-2">Address</span>
+                                        </th>
+                                        <td id="contact_address" class="px-6 py-4">
 
-                                    </td>
-                                </tr>
-                                <tr class="border-b bg-white dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                                    <th scope="row"
-                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        <i class="fa-solid fa-address-card h-4 w-4"></i><span class="pl-2">About</span>
-                                    </th>
-                                    <td id="contact_about" class="px-6 py-4">
+                                        </td>
+                                    </tr>
+                                    <tr class="border-b bg-white dark:bg-gray-700 dark:border-gray-700 border-gray-200">
+                                        <th scope="row"
+                                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            <i class="fa-solid fa-address-card h-4 w-4"></i><span
+                                                class="pl-2">About</span>
+                                        </th>
+                                        <td id="contact_about" class="px-6 py-4">
 
-                                    </td>
-                                </tr>
-                                <tr class="border-b bg-white dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                                    <th scope="row"
-                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        <i class="fa-solid w-4 h-4 fa-earth-americas"></i><span
-                                            class="pl-2">Website</span>
-                                    </th>
-                                    <td id="contact_website" class="px-6 py-4">
+                                        </td>
+                                    </tr>
+                                    <tr class="border-b bg-white dark:bg-gray-700 dark:border-gray-700 border-gray-200">
+                                        <th scope="row"
+                                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            <i class="fa-solid w-4 h-4 fa-earth-americas"></i><span
+                                                class="pl-2">Website</span>
+                                        </th>
+                                        <td id="contact_website" class="px-6 py-4">
 
-                                    </td>
-                                </tr>
-                                <tr class="border-b bg-white dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                                    <th scope="row"
-                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        <i class="fa-brands w-4 h-4 fa-linkedin"></i><span class="pl-2">Linkedin</span>
-                                    </th>
-                                    <td id="contact_social_link" class="px-6 py-4">
+                                        </td>
+                                    </tr>
+                                    <tr class="border-b bg-white dark:bg-gray-700 dark:border-gray-700 border-gray-200">
+                                        <th scope="row"
+                                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            <i class="fa-brands w-4 h-4 fa-linkedin"></i><span
+                                                class="pl-2">Linkedin</span>
+                                        </th>
+                                        <td id="contact_social_link" class="px-6 py-4">
 
-                                    </td>
-                                </tr>
-                                <tr class="border-b bg-white dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                                    <th scope="row"
-                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        <i class="fa-solid w-4 h-4 fa-user-group"></i><span class="pl-2">Group</span>
-                                    </th>
-                                    <td id="contact_group" class="px-6 py-4">
+                                        </td>
+                                    </tr>
+                                    <tr class="bg-white dark:bg-gray-700 dark:border-gray-700 border-gray-200">
+                                        <th scope="row"
+                                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            <i class="fa-solid w-4 h-4 fa-user-group"></i><span
+                                                class="pl-2">Group</span>
+                                        </th>
+                                        <td id="contact_group" class="px-6 py-4">
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <!-- Modal footer -->
