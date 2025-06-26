@@ -25,4 +25,6 @@ public interface ContactRepository extends JpaRepository<Contact, String> {
 
     Page<Contact> findByUserAndPhoneNumberContaining(User user, String phoneKeyword, Pageable pageable);
 
+    Page<Contact> findByFavoriteTrue();
+
 }

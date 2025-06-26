@@ -30,8 +30,21 @@ public class ContactServicesImplementation implements ContactService {
 
     @Override
     public Contact update(Contact contact) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        var oldContact = contactRepository.findById(contact.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Contact not found"));
+
+        oldContact.setName(contact.getName());
+        oldContact.setEmail(contact.getEmail());
+        oldContact.setPhoneNumber(contact.getPhoneNumber());
+        oldContact.setFavorite(contact.isFavorite());
+        oldContact.setAddress(contact.getAddress());
+        oldContact.setDescription(contact.getDescription());
+        oldContact.setPicture(contact.getPicture());
+        oldContact.setSocialLink(contact.getSocialLink());
+        oldContact.setWebsiteLink(contact.getWebsiteLink());
+        oldContact.setCloudinaryImagePublicId(contact.getCloudinaryImagePublicId());
+
+        return contactRepository.save(oldContact);
     }
 
     @Override
@@ -89,5 +102,10 @@ public class ContactServicesImplementation implements ContactService {
         var pageable = PageRequest.of(page, size, sort);
         return contactRepository.findByUserAndPhoneNumberContaining(user, phoneNumberKeyword, pageable);
     }
+
+    // @Override
+    // public Page<Contact> getAllFavoriteContacts() {
+    // return contactRepository.findByFavoriteTrue();
+    // }
 
 }

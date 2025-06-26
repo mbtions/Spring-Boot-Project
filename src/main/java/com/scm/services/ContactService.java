@@ -10,26 +10,29 @@ import com.scm.entities.User;
 
 public interface ContactService {
 
-    Contact save(Contact contact);
+        Contact save(Contact contact);
 
-    Contact update(Contact contact);
+        Contact update(Contact contact);
 
-    List<Contact> getAll();
+        List<Contact> getAll();
 
-    Contact getById(String id);
+        Contact getById(String id);
 
-    void delete(String id);
+        void delete(String id);
 
-    Page<Contact> searchByName(String nameKeyword, int page, int size, String sortField, String sortDirection,
-            User user);
+        Page<Contact> searchByName(String nameKeyword, int page, int size, String sortField, String sortDirection,
+                        User user);
 
-    Page<Contact> searchByEmail(String emailKeyword, int page, int size, String sortField,
-            String sortDirection, User user);
+        Page<Contact> searchByEmail(String emailKeyword, int page, int size, String sortField,
+                        String sortDirection, User user);
 
-    Page<Contact> searchByPhoneNumber(String phoneNumberKeyword, int page, int size, String sortField,
-            String sortDirection, User user);
+        Page<Contact> searchByPhoneNumber(String phoneNumberKeyword, int page, int size, String sortField,
+                        String sortDirection, User user);
 
-    List<Contact> getByUserId(String userId);
+        List<Contact> getByUserId(String userId);
 
-    Page<Contact> getByUser(User user, int page, int size, String sortField, String sortDirection);
+        Page<Contact> getByUser(User user, int page, int size, String sortField, String sortDirection);
+
+        // Page<Contact> getAllFavoriteContacts();
+
 }
