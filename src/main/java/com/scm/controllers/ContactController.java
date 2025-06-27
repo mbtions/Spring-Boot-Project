@@ -243,4 +243,58 @@ public class ContactController {
         return "redirect:/user/contacts/view/" + contactId;
     }
 
+    @RequestMapping(value = "/favorites", method = RequestMethod.GET)
+    public String getFavorites(
+            @ModelAttribute ContactSearchForm contactSearchForm,
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "size", defaultValue = AppConstants.PAGE_SIZE + "") int size,
+            @RequestParam(value = "sortBy", defaultValue = "name") String sortBy,
+            @RequestParam(value = "direction", defaultValue = "asc") String direction,
+            Model model,
+            Authentication authentication) {
+
+        User user = userService.getUserByEmail(Helper.getEmailOfLoggedInUser(authentication));
+
+        Page<Contact> pageContact = contactService.getAllFavoriteContacts(user, page, size, sortBy, direction);
+
+        model.addAttribute("pageContact", pageContact);
+        model.addAttribute("pageSize", AppConstants.PAGE_SIZE);
+        model.addAttribute("contactSearchForm", contactSearchForm);
+
+        return "user/favorite_contacts";
+    }
+
+    @GetMapping("/favorites/search")
+    public String searchFavoritesHandler(
+            @ModelAttribute ContactSearchForm contactSearchForm,
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "sortBy", defaultValue = "name") String sortBy,
+            @RequestParam(value = "direction", defaultValue = "asc") String direction,
+            @RequestParam(value = "size", defaultValue = AppConstants.PAGE_SIZE + "") int size,
+            Model model, Authentication authentication) {
+
+        Page<Contact> pageContact = null;
+
+        var user = userService.getUserByEmail(Helper.getEmailOfLoggedInUser(authentication));
+
+        if (contactSearchForm.getSearchField().equalsIgnoreCase("name")) {
+            pageContact = contactService.searchFavoriteByName(contactSearchForm.getFieldValue(), page, size, sortBy,
+                    direction,
+                    user);
+        } else if (contactSearchForm.getSearchField().equalsIgnoreCase("email")) {
+            pageContact = contactService.searchFavoriteByEmail(contactSearchForm.getFieldValue(), page, size, sortBy,
+                    direction,
+                    user);
+        } else if (contactSearchForm.getSearchField().equalsIgnoreCase("phoneNumber")) {
+            pageContact = contactService.searchFavoriteByPhoneNumber(contactSearchForm.getFieldValue(), page, size,
+                    sortBy,
+                    direction, user);
+        }
+
+        model.addAttribute("pageContact", pageContact);
+        model.addAttribute("pageSize", AppConstants.PAGE_SIZE);
+        model.addAttribute("contactSearchForm", contactSearchForm);
+
+        return "user/favorite_contacts";
+    }
 }

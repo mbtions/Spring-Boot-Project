@@ -103,9 +103,36 @@ public class ContactServicesImplementation implements ContactService {
         return contactRepository.findByUserAndPhoneNumberContaining(user, phoneNumberKeyword, pageable);
     }
 
-    // @Override
-    // public Page<Contact> getAllFavoriteContacts() {
-    // return contactRepository.findByFavoriteTrue();
-    // }
+    @Override
+    public Page<Contact> getAllFavoriteContacts(User user, int page, int size, String sortField,
+            String sortDirection) {
+        Sort sort = sortDirection.equals("desc") ? Sort.by(sortField).descending() : Sort.by(sortField).ascending();
+        var pageable = PageRequest.of(page, size, sort);
+        return contactRepository.findByUserAndFavoriteTrue(user, pageable);
+    }
+
+    @Override
+    public Page<Contact> searchFavoriteByName(String nameKeyword, int page, int size, String sortField,
+            String sortDirection, User user) {
+        Sort sort = sortDirection.equals("desc") ? Sort.by(sortField).descending() : Sort.by(sortField).ascending();
+        var pageable = PageRequest.of(page, size, sort);
+        return contactRepository.findByUserAndFavoriteTrueAndNameContaining(user, nameKeyword, pageable);
+    }
+
+    @Override
+    public Page<Contact> searchFavoriteByEmail(String emailKeyword, int page, int size, String sortField,
+            String sortDirection, User user) {
+        Sort sort = sortDirection.equals("desc") ? Sort.by(sortField).descending() : Sort.by(sortField).ascending();
+        var pageable = PageRequest.of(page, size, sort);
+        return contactRepository.findByUserAndFavoriteTrueAndEmailContaining(user, emailKeyword, pageable);
+    }
+
+    @Override
+    public Page<Contact> searchFavoriteByPhoneNumber(String phoneNumberKeyword, int page, int size, String sortField,
+            String sortDirection, User user) {
+        Sort sort = sortDirection.equals("desc") ? Sort.by(sortField).descending() : Sort.by(sortField).ascending();
+        var pageable = PageRequest.of(page, size, sort);
+        return contactRepository.findByUserAndFavoriteTrueAndPhoneNumberContaining(user, phoneNumberKeyword, pageable);
+    }
 
 }

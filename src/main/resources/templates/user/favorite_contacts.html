@@ -14,14 +14,12 @@
 
         <div class="sm:pl-64 pt-8">
             <div class="flex flex-col items-center justify-center">
-                <h1 class="text-5xl">Search Results</h1>
+                <h1 class="text-5xl">Your Favorites</h1>
                 <p class="p-2" th:text="${pageContact.totalElements} + ' contacts found'"></p>
             </div>
             <div class="contacts_container p-5">
-
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-
-                    <form th:action="@{'/user/contacts/search'}" th:object="${contactSearchForm}">
+                    <form th:action="@{'/user/contacts/favorites/search'}" th:object="${contactSearchForm}">
                         <div
                             class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 p-4 bg-white dark:bg-gray-900">
 
@@ -155,7 +153,6 @@
                     <h1 th:if="${pageContact.empty}" class="p-5 text-center text-4xl">No Result Found</h1>
                 </div>
             </div>
-
             <!-- view contact modal -->
             <div th:replace="~{user/contact_modals :: contact}">
             </div>

@@ -25,6 +25,12 @@ public interface ContactRepository extends JpaRepository<Contact, String> {
 
     Page<Contact> findByUserAndPhoneNumberContaining(User user, String phoneKeyword, Pageable pageable);
 
-    Page<Contact> findByFavoriteTrue();
+    Page<Contact> findByUserAndFavoriteTrue(User user, Pageable pageable);
+
+    Page<Contact> findByUserAndFavoriteTrueAndNameContaining(User user, String nameKeyword, Pageable pageable);
+
+    Page<Contact> findByUserAndFavoriteTrueAndPhoneNumberContaining(User user, String phoneKeyword, Pageable pageable);
+
+    Page<Contact> findByUserAndFavoriteTrueAndEmailContaining(User user, String emailKeyword, Pageable pageable);
 
 }

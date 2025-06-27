@@ -33,6 +33,17 @@ public interface ContactService {
 
         Page<Contact> getByUser(User user, int page, int size, String sortField, String sortDirection);
 
-        // Page<Contact> getAllFavoriteContacts();
+        Page<Contact> getAllFavoriteContacts(User user, int page, int size, String sortField,
+                        String sortDirection);
+
+        Page<Contact> searchFavoriteByName(String nameKeyword, int page, int size, String sortField,
+                        String sortDirection,
+                        User user);
+
+        Page<Contact> searchFavoriteByEmail(String emailKeyword, int page, int size, String sortField,
+                        String sortDirection, User user);
+
+        Page<Contact> searchFavoriteByPhoneNumber(String phoneNumberKeyword, int page, int size, String sortField,
+                        String sortDirection, User user);
 
 }
