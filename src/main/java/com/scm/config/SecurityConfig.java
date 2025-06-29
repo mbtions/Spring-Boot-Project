@@ -46,6 +46,9 @@ public class SecurityConfig {
     // }
 
     @Autowired
+    private AuthFailureHandler authFailureHandler;
+
+    @Autowired
     private SecurityCustomUserDetailsService userDetailsService;
 
     @Autowired
@@ -84,6 +87,7 @@ public class SecurityConfig {
             formLogin.passwordParameter("password");
             formLogin.defaultSuccessUrl("/user/profile", true);
             // formLogin.failureForwardUrl("/login?error=true");
+            formLogin.failureHandler(authFailureHandler);
         });
 
         httpSecurity.csrf(AbstractHttpConfigurer::disable);
