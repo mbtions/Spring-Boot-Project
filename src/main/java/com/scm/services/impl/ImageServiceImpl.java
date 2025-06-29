@@ -1,4 +1,4 @@
-package com.scm.services.implementation;
+package com.scm.services.impl;
 
 import java.io.IOException;
 
@@ -12,11 +12,11 @@ import com.scm.helpers.AppConstants;
 import com.scm.services.ImageService;
 
 @Service
-public class ImageServiceImplementation implements ImageService {
+public class ImageServiceImpl implements ImageService {
 
     private Cloudinary cloudinary;
 
-    public ImageServiceImplementation(Cloudinary cloudinary) {
+    public ImageServiceImpl(Cloudinary cloudinary) {
         this.cloudinary = cloudinary;
     }
 

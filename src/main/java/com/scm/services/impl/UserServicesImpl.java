@@ -1,4 +1,4 @@
-package com.scm.services.implementation;
+package com.scm.services.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +17,7 @@ import com.scm.repositories.UserRepository;
 import com.scm.services.UserService;
 
 @Service
-public class UserServicesImplementation implements UserService {
+public class UserServicesImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;

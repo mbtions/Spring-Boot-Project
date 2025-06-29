@@ -134,7 +134,7 @@
                                 </li>
 
                                 <li th:each="index : ${#numbers.sequence(0, pageContact.totalPages-1)}">
-                                    <a th:href="@{'/user/contacts/search?size=' + ${pageSize} + '&page=' + ${index} + '&searchField=' + ${contactSearchForm.searchField} + '&fieldValue=' + ${contactSearchForm.fieldValue}}"
+                                    <a th:href="@{'/user/contacts/favorites/search?size=' + ${pageSize} + '&page=' + ${index} + '&searchField=' + ${contactSearchForm.searchField} + '&fieldValue=' + ${contactSearchForm.fieldValue}}"
                                         th:classappend="${index == pageContact.number ? 'text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white' : 'leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'}"
                                         class="flex items-center justify-center px-4 h-10">
                                         <span th:text="${index + 1}"></span>

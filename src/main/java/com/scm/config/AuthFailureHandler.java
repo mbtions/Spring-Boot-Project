@@ -22,16 +22,18 @@ public class AuthFailureHandler implements AuthenticationFailureHandler {
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
             AuthenticationException exception) throws IOException, ServletException {
         if (exception instanceof DisabledException) {
-
             // user is disabled
             HttpSession session = request.getSession();
             session.setAttribute("message",
                     Message.builder()
-                            .content("User is disabled")
+                            .content(
+                                    "User is disabled. Please confirm your email id by verifiying. Email verification link has been sent to your registered email!")
                             .type(MessageType.red)
                             .build());
 
             response.sendRedirect("/login");
+        } else {
+            response.sendRedirect("/login?error=true");
         }
 
     }

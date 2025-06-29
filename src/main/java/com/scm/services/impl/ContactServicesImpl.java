@@ -1,11 +1,10 @@
-package com.scm.services.implementation;
+package com.scm.services.impl;
 
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +15,7 @@ import com.scm.services.ContactService;
 import com.scm.entities.User;
 
 @Service
-public class ContactServicesImplementation implements ContactService {
+public class ContactServicesImpl implements ContactService {
 
     @Autowired
     private ContactRepository contactRepository;
