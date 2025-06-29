@@ -12,7 +12,7 @@
             <div th:replace="~{user/sidebar :: sidebar}"></div>
         </div>
 
-        <div class="sm:pl-64 pt-8">
+        <div class="sm:pl-64 pt-8 mb-6">
             <div class="flex flex-col items-center justify-center">
                 <h1 class="text-5xl">Your Favorites</h1>
                 <p class="p-2" th:text="${pageContact.totalElements} + ' contacts found'"></p>
@@ -129,7 +129,7 @@
                         <nav aria-label="Page navigation example">
                             <ul class="inline-flex -space-x-px text-base h-10">
                                 <li th:unless="${pageContact.first}">
-                                    <a th:href="@{'/user/contacts/search?size=' + ${pageSize} + '&page=' + ${pageContact.number-1} + '&searchField=' + ${contactSearchForm.searchField} + '&fieldValue=' + ${contactSearchForm.fieldValue}}"
+                                    <a th:href="@{'/user/contacts/favorites/search?size=' + ${pageSize} + '&page=' + ${pageContact.number-1} + '&searchField=' + ${contactSearchForm.searchField} + '&fieldValue=' + ${contactSearchForm.fieldValue}}"
                                         class="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
                                 </li>
 
@@ -142,7 +142,7 @@
                                 </li>
 
                                 <li th:unless="${pageContact.last}">
-                                    <a th:href="@{'/user/contacts/search?size=' + ${pageSize} + '&page=' + ${pageContact.number + 1} + '&searchField=' + ${contactSearchForm.searchField} + '&fieldValue=' + ${contactSearchForm.fieldValue}}"
+                                    <a th:href="@{'/user/contacts/favorites/search?size=' + ${pageSize} + '&page=' + ${pageContact.number + 1} + '&searchField=' + ${contactSearchForm.searchField} + '&fieldValue=' + ${contactSearchForm.fieldValue}}"
                                         class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
                                 </li>
                             </ul>

@@ -6,13 +6,13 @@
 </head>
 
 <body>
-    <div id="login_content" class="mb-4">
+    <div id="login_content" class="mb-6">
         <div class="flex items-center justify-center mt-4">
             <div class="w-full max-w-md p-4 bg-white rounded-xl sm:p-6 md:p-8 dark:bg-gray-800 shadow-lg">
-                <!-- <div th:replace="~{message :: messagebox}"></div> -->
+                <div th:replace="~{message :: messagebox}"></div>
                 <h5 class="text-xl font-medium text-gray-900 dark:text-white">Login to Your Account</h5>
                 <!-- <p class="font-normal py-1">Start managing your contacts on cloud</p> -->
-                <!-- sign up form -->
+                <!-- Login form -->
                 <div th:if="${param.error}"
                     class="border-2 border-red-600 rounded-lg text-red-600 font-semibold text-center my-3 p-3">Invalid
                     Credentials</div>
@@ -46,7 +46,8 @@
                             Reset</button> -->
                     </div>
                     <div class="text-sm text-center font-medium text-gray-500 dark:text-gray-300">
-                        Not registered? <a href="#" class="text-blue-700 hover:underline dark:text-blue-500">Create
+                        Not registered? <a th:href="@{'/register'}"
+                            class="text-blue-700 hover:underline dark:text-blue-500">Create
                             account</a>
                     </div>
                     <p class="text-center font-semibold text-gray-600 dark:text-gray-400">OR</p>
