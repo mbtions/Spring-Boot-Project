@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
+<html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::#script})}">
 
 <head>
     <title th:text="${loggedInUser.name}+' | Contacts'">All Contacts</title>
@@ -23,43 +23,51 @@
 
                         <div th:replace="~{message :: messagebox}"></div>
 
-                        <form th:action="@{'/user/contacts/search'}" th:object="${contactSearchForm}">
-                            <div
-                                class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 p-4 bg-white dark:bg-gray-900">
+                        <div
+                            class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 p-4 bg-white dark:bg-gray-900">
+                            <form th:action="@{'/user/contacts/search'}" th:object="${contactSearchForm}" method="get">
 
-                                <!-- search by field container -->
-                                <div>
-                                    <select id="countries_disabled" th:field="*{searchField}"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        <option selected value="">Search by</option>
-                                        <option value="name">Name</option>
-                                        <option value="phoneNumber">Phone</option>
-                                        <option value="email">Email</option>
-                                    </select>
-                                </div>
+                                <div
+                                    class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 bg-white dark:bg-gray-900 gap-2">
 
-                                <!-- search container -->
-
-                                <label for="table-search" class="sr-only">Search</label>
-                                <div class="relative">
-                                    <div
-                                        class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
-                                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                                        </svg>
+                                    <!-- search by field container -->
+                                    <div>
+                                        <select th:field="*{searchField}"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                            <option selected value="">Search by</option>
+                                            <option value="name">Name</option>
+                                            <option value="phoneNumber">Phone</option>
+                                            <option value="email">Email</option>
+                                        </select>
                                     </div>
-                                    <input th:field="*{fieldValue}" type="text" id="table-search-users"
-                                        class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="Search for users">
-                                </div>
 
-                                <!-- search button -->
-                                <button type="submit"
-                                    class="rounded-lg text-white bg-black dark:bg-blue-600 px-3 py-2">Search</button>
+                                    <!-- search container -->
+                                    <div class="relative">
+                                        <div
+                                            class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+                                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2"
+                                                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                            </svg>
+                                        </div>
+                                        <input th:field="*{fieldValue}" type="text"
+                                            class="block p-2.5 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            placeholder="Search for users">
+                                    </div>
+
+                                    <!-- search button -->
+                                    <button type="submit"
+                                        class="rounded-lg text-white bg-black dark:bg-blue-600 hover:bg-blue-700 px-3 py-2">Search</button>
+                                </div>
+                            </form>
+                            <div>
+                                <!-- export button -->
+                                <button onclick="exportData()"
+                                    class="rounded-lg text-white bg-green-700 px-3 py-2 hover:bg-green-800">Export</button>
                             </div>
-                        </form>
+                        </div>
                         <table th:unless="${pageContact.empty}"
                             class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                             <thead
@@ -86,7 +94,7 @@
                                     <th scope="row"
                                         class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                                         <img onerror="this.src='https://www.shutterstock.com/image-vector/user-profile-icon-vector-avatar-600nw-2247726673.jpg'"
-                                            class="w-10 h-10 rounded-full" th:src="@{*{picture}}" alt="Jese image">
+                                            class="w-10 h-10 rounded-full" th:src="*{picture}" alt="Jese image">
                                         <div class="ps-3">
                                             <div class="text-base font-semibold" th:text="*{name}">Neil Sims</div>
                                             <div class="font-normal text-gray-500" th:text="*{email}">
@@ -105,16 +113,16 @@
                                             <div th:unless="*{favorite}">
                                                 <i class='fa-regular fa-heart h-6 w-6'></i>
                                             </div>
-                                            <a th:if="${c.websiteLink.length() > 0}" th:href="@{*{websiteLink}}"
-                                                target="_blank"><i
+                                            <a th:if="${c.websiteLink != null and !#strings.isEmpty(c.websiteLink)}"
+                                                th:href="*{websiteLink}" target="_blank"><i
                                                     class="fa-solid fa-link text-blue-600 w-6 h-6"></i></a>
-                                            <a th:unless="${c.websiteLink.length() > 0}" href="#"><i
-                                                    class="fa-solid fa-link w-6 h-6"></i></a>
-                                            <a th:if="${c.socialLink.length() > 0}" th:href="@{*{socialLink}}"
-                                                target="_blank"><i
+                                            <a th:unless="${c.websiteLink != null and !#strings.isEmpty(c.websiteLink)}"
+                                                href="#"><i class="fa-solid fa-link w-6 h-6"></i></a>
+                                            <a th:if="${c.socialLink != null and !#strings.isEmpty(c.socialLink)}"
+                                                th:href="*{socialLink}" target="_blank"><i
                                                     class="fa-brands fa-linkedin w-6 h-6 text-blue-600"></i></a>
-                                            <a th:unless="${c.socialLink.length() > 0}" href="#"><i
-                                                    class="fa-brands fa-linkedin w-6 h-6"></i></a>
+                                            <a th:unless="${c.socialLink != null and !#strings.isEmpty(c.socialLink)}"
+                                                href="#"><i class="fa-brands fa-linkedin w-6 h-6"></i></a>
                                         </div>
                                     </td>
                                     <td class="px-6 py-4">
@@ -161,22 +169,88 @@
                                 </ul>
                             </nav>
                         </div>
+
+                        <!-- hidden table for export -->
+                        <div>
+                            <table th:unless="${pageContact.empty}" class="invisible hidden" id="hiddenTable">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">
+                                            Name
+                                        </th>
+                                        <th scope="col">
+                                            Email
+                                        </th>
+                                        <th scope="col">
+                                            Phone
+                                        </th>
+                                        <th scope="col">
+                                            Favorite
+                                        </th>
+                                        <th scope="col">
+                                            Links
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:object="${d}" th:each="d : ${pageContact.getContent()}">
+                                        <td>
+                                            <span th:text="${d.name}"></span>
+                                        </td>
+                                        <td>
+                                            <span th:text="${d.email}"></span>
+                                        </td>
+                                        <td>
+                                            <span th:text="${d.phoneNumber}"></span>
+                                        </td>
+                                        <td>
+                                            <span th:if="${d.favorite}">Yes</span>
+                                            <span th:unless="${d.favorite}">No</span>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <span th:if="*{websiteLink != null and !#strings.isEmpty(websiteLink)}">
+                                                    <span th:text="*{websiteLink}"></span>,
+                                                </span>
+                                                <span
+                                                    th:if="${d.socialLink != null and !#strings.isEmpty(d.socialLink)}"
+                                                    th:text="*{socialLink}"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
                         <!-- No Result Found -->
                         <h1 th:if="${pageContact.empty}" class="p-5 text-center text-4xl">No Result Found</h1>
                     </div>
+
                 </div>
             </div>
 
             <!-- view contact modal -->
-            <div th:replace="~{user/contact_modals :: contact}">
+            <div th:replace="~{user/contact_modals :: view_contact}">
             </div>
-
         </div>
-
     </div>
 
-    <script th:src="@{'/js/contacts.js'}"></script>
-    <script>console.log("contacts page");</script>
+    <div id="script">
+        <script th:src="@{'/js/contacts.js'}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@linways/table-to-excel@1.0.4/dist/tableToExcel.min.js"></script>
+        <script>
+            console.log("contacts page");
+            function exportData() {
+                TableToExcel.convert(document.getElementById("hiddenTable"), {
+                    name: "contacts.xlsx",
+                    sheet: {
+                        name: "Sheet 1",
+                    },
+                });
+            }
+        </script>
+    </div>
+
 </body>
 
 </html>
