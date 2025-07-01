@@ -18,14 +18,17 @@
                 <p class="p-2" th:text="${pageContact.totalElements} + ' contacts found'"></p>
             </div>
             <div class="contacts_container p-5">
-                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                    <form th:action="@{'/user/contacts/favorites/search'}" th:object="${contactSearchForm}">
+                <div
+                    class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 p-4 bg-white dark:bg-gray-900">
+                    <form th:action="@{'/user/contacts/favorites/search'}" th:object="${contactSearchForm}"
+                        method="get">
+
                         <div
-                            class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 p-4 bg-white dark:bg-gray-900">
+                            class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 bg-white dark:bg-gray-900 gap-2">
 
                             <!-- search by field container -->
                             <div>
-                                <select id="countries_disabled" th:field="*{searchField}"
+                                <select th:field="*{searchField}"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option selected value="">Search by</option>
                                     <option value="name">Name</option>
@@ -35,8 +38,6 @@
                             </div>
 
                             <!-- search container -->
-
-                            <label for="table-search" class="sr-only">Search</label>
                             <div class="relative">
                                 <div
                                     class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -46,16 +47,26 @@
                                             stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                     </svg>
                                 </div>
-                                <input th:field="*{fieldValue}" type="text" id="table-search-users"
-                                    class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                <input th:field="*{fieldValue}" type="text"
+                                    class="block p-2.5 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="Search for users">
                             </div>
 
                             <!-- search button -->
                             <button type="submit"
-                                class="rounded-lg text-white bg-black dark:bg-blue-600 px-3 py-2">Search</button>
+                                class="px-3 py-2 rounded-lg text-white bg-black dark:bg-blue-600 hover:bg-blue-700">Search</button>
                         </div>
                     </form>
+                    <div>
+                        <!-- export button -->
+                        <button onclick="exportData()"
+                            class="px-3 py-2 space-y-4 rounded-lg text-white bg-green-700 hover:bg-green-800">Export</button>
+                    </div>
+
+                </div>
+
+                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+
                     <table th:unless="${pageContact.empty}"
                         class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -81,7 +92,7 @@
                                 <th scope="row"
                                     class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                                     <img onerror="this.src='https://www.shutterstock.com/image-vector/user-profile-icon-vector-avatar-600nw-2247726673.jpg'"
-                                        class="w-10 h-10 rounded-full" th:src="@{*{picture}}" alt="Jese image">
+                                        class="w-10 h-10 rounded-full" th:src="*{picture}" alt="Jese image">
                                     <div class="ps-3">
                                         <div class="text-base font-semibold" th:text="*{name}">Neil Sims</div>
                                         <div class="font-normal text-gray-500" th:text="*{email}">
@@ -100,15 +111,16 @@
                                         <div th:unless="*{favorite}">
                                             <i class='fa-regular fa-heart h-6 w-6'></i>
                                         </div>
-                                        <a th:if="${c.websiteLink.length() > 0}" th:href="@{*{websiteLink}}"
-                                            target="_blank"><i class="fa-solid fa-link text-blue-600 w-6 h-6"></i></a>
-                                        <a th:unless="${c.websiteLink.length() > 0}" href="#"><i
-                                                class="fa-solid fa-link w-6 h-6"></i></a>
-                                        <a th:if="${c.socialLink.length() > 0}" th:href="@{*{socialLink}}"
-                                            target="_blank"><i
+                                        <a th:if="${c.websiteLink != null and !#strings.isEmpty(c.websiteLink)}"
+                                            th:href="*{websiteLink}" target="_blank"><i
+                                                class="fa-solid fa-link text-blue-600 w-6 h-6"></i></a>
+                                        <a th:unless="${c.websiteLink != null and !#strings.isEmpty(c.websiteLink)}"
+                                            href="#"><i class="fa-solid fa-link w-6 h-6"></i></a>
+                                        <a th:if="${c.socialLink != null and !#strings.isEmpty(c.socialLink)}"
+                                            th:href="*{socialLink}" target="_blank"><i
                                                 class="fa-brands fa-linkedin w-6 h-6 text-blue-600"></i></a>
-                                        <a th:unless="${c.socialLink.length() > 0}" href="#"><i
-                                                class="fa-brands fa-linkedin w-6 h-6"></i></a>
+                                        <a th:unless="${c.socialLink != null and !#strings.isEmpty(c.socialLink)}"
+                                            href="#"><i class="fa-brands fa-linkedin w-6 h-6"></i></a>
                                     </div>
                                 </td>
                                 <td class="px-6 py-4">
@@ -154,7 +166,7 @@
                 </div>
             </div>
             <!-- view contact modal -->
-            <div th:replace="~{user/contact_modals :: contact}">
+            <div th:replace="~{user/contact_modals :: view_contact}">
             </div>
 
         </div>
