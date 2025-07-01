@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
+
+<head>
+    <title>Home</title>
+</head>
+
+<body>
+    <div id="content" class="md:w-1/2 text-center mt-5 mx-auto mb-6">
+        <section>
+            <!-- <h1 class="p-4 text-3xl text-center">Welcome to Home Page</h1> -->
+            <div th:replace="~{message :: messagebox}"></div>
+            <a th:href="@{'/login'}"
+                class="mt-2 p-2 rounded-lg text-white bg-gray-700 hover:bg-gray-800 dark:bg-blue-600 dark:hover:bg-blue-700">Login</a>
+        </section>
+    </div>
+
+    <script>console.log("home page");</script>
+</body>
+
+</html>
