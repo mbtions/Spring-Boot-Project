@@ -105,19 +105,19 @@
                                 <td class="px-6 py-4">
                                     <div class="flex space-x-4 items-center">
                                         <div th:if="*{favorite}">
-                                            <i class='fa-solid fa-heart h-6 w-6 text-blue-600'></i>
+                                            <i class='fa-solid fa-heart h-6 w-6 text-blue-600 dark:text-blue-500'></i>
                                         </div>
                                         <div th:unless="*{favorite}">
                                             <i class='fa-regular fa-heart h-6 w-6'></i>
                                         </div>
                                         <a th:if="${c.websiteLink != null and !#strings.isEmpty(c.websiteLink)}"
                                             th:href="*{websiteLink}" target="_blank"><i
-                                                class="fa-solid fa-link text-blue-600 w-6 h-6"></i></a>
+                                                class="fa-solid fa-link text-blue-600 dark:text-blue-500 w-6 h-6 dark:hover:text-blue-400"></i></a>
                                         <a th:unless="${c.websiteLink != null and !#strings.isEmpty(c.websiteLink)}"
                                             href="#"><i class="fa-solid fa-link w-6 h-6"></i></a>
                                         <a th:if="${c.socialLink != null and !#strings.isEmpty(c.socialLink)}"
                                             th:href="*{socialLink}" target="_blank"><i
-                                                class="fa-brands fa-linkedin w-6 h-6 text-blue-600"></i></a>
+                                                class="fa-brands fa-linkedin w-6 h-6 text-blue-600 dark:text-blue-500 dark:hover:text-blue-400"></i></a>
                                         <a th:unless="${c.socialLink != null and !#strings.isEmpty(c.socialLink)}"
                                             href="#"><i class="fa-brands fa-linkedin w-6 h-6"></i></a>
                                     </div>
