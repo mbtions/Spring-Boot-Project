@@ -77,7 +77,7 @@
                                     </div>
                                     <input th:field="*{phoneNumber}" type="text"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="9823525525" />
+                                        placeholder="9012345678" />
                                 </div>
                                 <p class="text-red-500" th:if="${#fields.hasErrors('phoneNumber')}"
                                     th:errors="*{phoneNumber}">
@@ -146,7 +146,7 @@
                             <div class="mb-3">
                                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                     for="large_size">Contact Image</label>
-                                <input id="image_file_input"
+                                <input id="image_file_input" accept="image/*"
                                     class="block w-full mb-2 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                                     th:field="*{contactImage}" type="file" />
 

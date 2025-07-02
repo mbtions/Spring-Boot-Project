@@ -4,12 +4,12 @@
         aria-label="Sidebar">
         <div class="h-full pt-12 px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
             <a th:href="@{'/user/profile'}" class="flex flex-col items-center ps-2.5 mb-5">
-                <!-- th:src="@{${loggedInUser.profilePic}}" -->
-                <img th:if="${loggedInUser.profilePic != null}" th:src="@{${loggedInUser.profilePic}}"
-                    class=" h-16 me-3 sm:h-24 rounded-full" alt="User's Profile Picture" />
-                <img th:unless="${loggedInUser.profilePic != null}" th:src="@{'/images/3d-contact.png'}"
-                    class=" h-16 me-3 sm:h-24 rounded-full" alt="User's Profile Picture" />
-                <span class="self-center text-xl font-normal whitespace-nowrap text-gray-500"><span
+                <img onerror="this.src='https://icons.iconarchive.com/icons/papirus-team/papirus-status/256/avatar-default-icon.png'"
+                    th:src="@{${loggedInUser.profilePic}}" class="shadow-xl h-16 me-3 sm:h-24 rounded-full"
+                    alt="User's Profile Picture" />
+                <!-- <img th:unless="${loggedInUser.profilePic != null}" th:src="@{'/images/3d-contact.png'}"
+                    class=" h-16 me-3 sm:h-24 rounded-full" alt="User's Profile Picture" /> -->
+                <span class="mt-2 self-center text-xl font-normal whitespace-nowrap text-gray-500"><span
                         class="font-semibold" th:text="${loggedInUser.name}"></span></span>
                 <span class="font-semibold dark:text-white whitespace-nowrap text-xl self-center">Welcome to SCM</span>
             </a>
