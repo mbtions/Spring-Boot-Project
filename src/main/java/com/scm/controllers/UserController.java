@@ -157,6 +157,7 @@ public class UserController {
                 .about(user.getAbout())
                 .phoneNumber(user.getPhoneNumber())
                 .picture(user.getProfilePic())
+                .password(user.getPassword())
                 .build();
 
         model.addAttribute("userForm", userForm);
@@ -172,9 +173,10 @@ public class UserController {
             HttpSession session) {
 
         if (bindingResult.hasErrors()) {
+            logger.info("Validation errors: " + bindingResult.getAllErrors());
             session.setAttribute("message",
-                    Message.builder().content("Something went wrong!").type(MessageType.red).build());
-            return "/user/profile";
+                    Message.builder().content("Please correct highlighted errors!").type(MessageType.red).build());
+            return "user/profile";
         }
 
         User user = userService.getUserByEmail(Helper.getEmailOfLoggedInUser(authentication));
@@ -183,6 +185,7 @@ public class UserController {
         user.setEmail(userForm.getEmail());
         user.setAbout(userForm.getAbout());
         user.setPhoneNumber(userForm.getPhoneNumber());
+        user.setPassword(userForm.getPassword());
 
         if (userForm.getProfileImage() != null && !userForm.getProfileImage().isEmpty()) {
             logger.info("Uploading new profile image...");
