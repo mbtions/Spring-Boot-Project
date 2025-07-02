@@ -2,25 +2,173 @@
 <html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
 
 <head>
-    <title th:text="${loggedInUser.name}+' | SCM'">Profile</title>
+    <title th:text="${loggedInUser.name}+' | Profile'">Profile</title>
 </head>
 
 <body>
+    <!-- class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100" -->
     <div id="content">
         <!-- sidebar -->
         <div th:if="${loggedInUser}">
             <div th:replace="~{user/sidebar :: sidebar}"></div>
         </div>
 
-        <div class="sm:pl-64 pt-8">
+        <div class="sm:pl-64 pt-8 mb-6">
             <div class="flex flex-col items-center justify-center">
-                <h1 class="text-5xl">Welcome, <span th:text="${loggedInUser.name}"></span></h1>
+
+                <div class="max-w-5xl mx-auto py-10 px-4">
+                    <!-- Profile Header -->
+                    <div class="flex flex-col sm:flex-row items-center gap-6">
+                        <img th:src="${loggedInUser.profilePic}" alt="Profile Picture"
+                            class="w-32 h-32 rounded-full object-cover shadow-md border-4 border-gray-300 dark:border-gray-700">
+
+                        <div>
+                            <h1 class="text-3xl font-bold mb-1" th:text="${loggedInUser.name}">John Doe</h1>
+                            <p class="text-sm text-gray-500 dark:text-gray-400"
+                                th:text="'User ID: ' + ${loggedInUser.userId}">
+                                User ID</p>
+                            <p class="text-sm mt-1">
+                                <span class="font-semibold">Provider:</span>
+                                <span th:text="${loggedInUser.provider}">SELF</span>
+                            </p>
+                        </div>
+
+                        <div class="ml-auto">
+                            <!-- href="#edit-section" onclick="toggleEditSection()" -->
+                            <button
+                                class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white px-4 py-2 rounded shadow">
+                                <i class="fas fa-edit"></i> Edit Profile
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Profile Info -->
+                    <div
+                        class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6 bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+                        <div>
+                            <h2 class="text-lg font-semibold mb-2">Contact Information</h2>
+                            <p><i class="fas fa-envelope text-blue-500"></i> <span
+                                    th:text="${loggedInUser.email}">Email</span>
+                            </p>
+                            <p><i class="fas fa-phone text-green-500"></i> <span
+                                    th:text="${loggedInUser.phoneNumber}">Phone</span></p>
+                        </div>
+
+                        <div>
+                            <h2 class="text-lg font-semibold mb-2">Status</h2>
+                            <p>
+                                <i class="fas fa-check-circle text-green-500" th:if="${loggedInUser.enabled}"></i>
+                                <i class="fas fa-times-circle text-red-500" th:unless="${loggedInUser.enabled}"></i>
+                                Account Enabled
+                            </p>
+                            <p>
+                                <i class="fas fa-check text-green-500" th:if="${loggedInUser.emailVerified}"></i>
+                                <i class="fas fa-times text-red-500" th:unless="${loggedInUser.emailVerified}"></i>
+                                Email Verified
+                            </p>
+                            <p>
+                                <i class="fas fa-check text-green-500" th:if="${loggedInUser.phoneVerified}"></i>
+                                <i class="fas fa-times text-red-500" th:unless="${loggedInUser.phoneVerified}"></i>
+                                Phone Verified
+                            </p>
+                        </div>
+
+                        <div class="col-span-full">
+                            <h2 class="text-lg font-semibold mb-2">About</h2>
+                            <p class="text-gray-700 dark:text-gray-300" th:text="${loggedInUser.about}">About user
+                                here...</p>
+                        </div>
+                    </div>
+
+                    <!-- Edit Form -->
+                    <div id="edit_section" class="mt-10">
+                        <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Edit Profile</h2>
+
+                        <div th:replace="~{message :: messagebox}"></div>
+
+                        <form action="" th:action="@{'/user/update'}" th:object="${userForm}" method="post"
+                            enctype="multipart/form-data"
+                            class="space-y-6 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+
+                            <!-- name -->
+                            <div>
+                                <label for="name"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                                <input th:field="*{name}" type="text"
+                                    class="block w-full p-2.5 text-sm rounded-lg border border-gray-300 bg-gray-50 text-gray-900 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+                                <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-red-600 py-2">
+                                </p>
+                            </div>
+
+                            <!-- email -->
+                            <div>
+                                <label for="email"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                                <input th:field="*{email}" type="email"
+                                    class="block w-full p-2.5 text-sm rounded-lg border border-gray-300 bg-gray-50 text-gray-900 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+                                <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-red-600 py-2">
+                                </p>
+                            </div>
+
+                            <!-- phoneNumber -->
+                            <div>
+                                <label for="phoneNumber"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone</label>
+                                <input th:field="*{phoneNumber}" type="text"
+                                    class="block w-full p-2.5 text-sm rounded-lg border border-gray-300 bg-gray-50 text-gray-900 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+                                <p th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"
+                                    class="text-red-600 py-2"></p>
+                            </div>
+
+                            <!-- about -->
+                            <div>
+                                <label for="about"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">About</label>
+                                <textarea th:field="*{about}" rows="4"
+                                    class="block w-full p-2.5 text-sm rounded-lg border border-gray-300 bg-gray-50 text-gray-900 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"></textarea>
+                                <p th:if="${#fields.hasErrors('about')}" th:errors="*{about}" class="text-red-600 py-2">
+                                </p>
+                            </div>
+
+                            <!-- Profile Picture -->
+                            <div>
+                                <label for="image_file_input"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                    Profile Picture
+                                </label>
+                                <input id="image_file_input" name="profileImage" th:field="*{profileImage}" type="file"
+                                    accept="image/*"
+                                    class="block w-full text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" />
+                                <p class="text-red-500" th:if="${#fields.hasErrors('profileImage')}"
+                                    th:errors="*{profileImage}">
+                                    Invalid Image
+                                </p>
+                                <!-- image preview -->
+                                <img class="max-h-52 mt-4 rounded-lg shadow" id="upload_image_preview" />
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="flex items-baseline justify-end gap-4">
+                                <button type="submit"
+                                    class="text-white bg-green-600 hover:bg-green-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-500 dark:hover:bg-green-600">
+                                    <i class="fas fa-save mr-2"></i> Save Changes
+                                </button>
+                                <a href="#" id="cancel_button"
+                                    class="text-sm border border-gray-600 px-5 py-2 rounded text-gray-500 hover:underline dark:text-gray-300">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
             </div>
         </div>
-
     </div>
 
-    <script>console.log("profile page");</script>
+    <script th:src="@{'/js/admin.js'}"></script>
+    <script>
+        console.log("profile page");
+    </script>
+
 </body>
 
 </html>

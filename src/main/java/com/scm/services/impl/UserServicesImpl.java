@@ -81,6 +81,7 @@ public class UserServicesImpl implements UserService {
         updatedUser.setPhoneNumber(user.getPhoneNumber());
         updatedUser.setPhoneVerified(user.isPhoneVerified());
         updatedUser.setProfilePic(user.getProfilePic());
+        updatedUser.setCloudinaryImagePublicId(user.getCloudinaryImagePublicId());
 
         User save = userRepository.save(updatedUser);
 

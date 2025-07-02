@@ -61,6 +61,8 @@ public class User implements UserDetails {
 
     private String emailToken;
 
+    private String cloudinaryImagePublicId;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<SimpleGrantedAuthority> roles = roleList.stream().map(role -> new SimpleGrantedAuthority(role))

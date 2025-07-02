@@ -1,6 +1,9 @@
 package com.scm.forms;
 
-import jakarta.persistence.Id;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.scm.validators.ValidFile;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -33,4 +36,8 @@ public class UserForm {
     @Size(min = 8, max = 12, message = "Invalid Phone Number")
     private String phoneNumber;
 
+    @ValidFile(message = "Invalid File")
+    private MultipartFile profileImage;
+
+    private String picture;
 }
