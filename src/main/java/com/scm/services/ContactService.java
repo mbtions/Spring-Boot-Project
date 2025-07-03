@@ -46,4 +46,8 @@ public interface ContactService {
         Page<Contact> searchFavoriteByPhoneNumber(String phoneNumberKeyword, int page, int size, String sortField,
                         String sortDirection, User user);
 
+        long countContactsByUser(User user);
+
+        long countFavoriteContactsByUser(User user);
+
 }

@@ -20,6 +20,7 @@ import com.scm.forms.UserForm;
 import com.scm.helpers.Helper;
 import com.scm.helpers.Message;
 import com.scm.helpers.MessageType;
+import com.scm.services.ContactService;
 import com.scm.services.ImageService;
 import com.scm.services.UserService;
 
@@ -42,8 +43,16 @@ public class UserController {
     @Autowired
     private ImageService imageService;
 
+    @Autowired
+    private ContactService contactService;
+
     @GetMapping("/dashboard")
-    public String userDashboard() {
+    public String userDashboard(Model model, Authentication authentication) {
+        User user = userService.getUserByEmail(Helper.getEmailOfLoggedInUser(authentication));
+
+        model.addAttribute("totalContacts", contactService.countContactsByUser(user));
+        model.addAttribute("favoriteContacts", contactService.countFavoriteContactsByUser(user));
+
         return "user/dashboard";
     }
 

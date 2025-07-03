@@ -33,4 +33,8 @@ public interface ContactRepository extends JpaRepository<Contact, String> {
 
     Page<Contact> findByUserAndFavoriteTrueAndEmailContaining(User user, String emailKeyword, Pageable pageable);
 
+    long countByUser(User user);
+
+    long countByUserAndFavoriteTrue(User user);
+
 }

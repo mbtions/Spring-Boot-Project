@@ -12,5 +12,8 @@
   "description": "",
   "devDependencies": {
     "tailwindcss": "^3.4.17"
+  },
+  "dependencies": {
+    "tailwind-scrollbar": "^3.0.1"
   }
 }

@@ -1,4 +1,20 @@
-<!DOCTYPE html>
+<!-- <div id="content">
+
+
+    <div class="sm:pl-64 pt-8">
+        <div class="flex flex-col items-center justify-center">
+            <h1 class="text-5xl">Welcome to the Dashboard</h1>
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+
+</html> -->
+
+<!-- <!DOCTYPE html>
 <html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
 
 <head>
@@ -6,21 +22,153 @@
 </head>
 
 <body>
+    <div id="content"> -->
+<!-- sidebar -->
+<!-- <div th:if="${loggedInUser}">
+            <div th:replace="~{user/sidebar :: sidebar}"></div>
+        </div>
+
+        <div class="sm:pl-64 p-6 space-y-6">
+            <h1 class="text-3xl font-bold text-gray-800 dark:text-white">Welcome, <span
+                    th:text="${loggedInUser.name}">User</span>!</h1> -->
+
+<!-- Quick Info Cards -->
+<!-- <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+                    <h2 class="text-lg font-semibold text-gray-700 dark:text-gray-300">Email</h2>
+                    <p class="text-gray-900 dark:text-white" th:text="${loggedInUser.email}">example@example.com</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+                    <h2 class="text-lg font-semibold text-gray-700 dark:text-gray-300">Phone</h2>
+                    <p class="text-gray-900 dark:text-white" th:text="${loggedInUser.phoneNumber}">1234567890</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+                    <h2 class="text-lg font-semibold text-gray-700 dark:text-gray-300">Account Status</h2>
+                    <p class="text-green-500 font-semibold" th:if="${loggedInUser.enabled}">Active</p>
+                    <p class="text-red-500 font-semibold" th:unless="${loggedInUser.enabled}">Inactive</p>
+                </div>
+            </div> -->
+
+<!-- About Section -->
+<!-- <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+                <h2 class="text-lg font-semibold text-gray-700 dark:text-gray-300">About You</h2>
+                <p class="text-gray-900 dark:text-white mt-2" th:text="${loggedInUser.about}">Write something about
+                    yourself...</p>
+            </div> -->
+
+<!-- Actions -->
+<!-- <div class="flex gap-4">
+                <a href="/user/profile"
+                    class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm shadow">
+                    <i class="fas fa-user-edit mr-1"></i> Edit Profile
+                </a>
+                <a href="/user/contacts"
+                    class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm shadow">
+                    <i class="fas fa-address-book mr-1"></i> Manage Contacts
+                </a>
+            </div>
+        </div>
+    </div>
+    <script>console.log("dashboard page");</script>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
+
+<head>
+    <title th:text="${loggedInUser.name} + ' | Dashboard'">Dashboard</title>
+</head>
+
+<body>
     <div id="content">
-        <!-- sidebar -->
+        <!-- Sidebar -->
         <div th:if="${loggedInUser}">
             <div th:replace="~{user/sidebar :: sidebar}"></div>
         </div>
 
-        <div class="sm:pl-64 pt-8">
-            <div class="flex flex-col items-center justify-center">
-                <h1 class="text-5xl">Welcome to the Dashboard</h1>
+        <!-- Main Content -->
+        <div class="sm:pl-64 p-6 space-y-6">
+            <div class="sm:pl-6">
+                <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+                    👋 Welcome back, <span th:text="${loggedInUser.name}">User</span>!
+                </h1>
+
+                <!-- Stats Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Total Contacts -->
+                    <a th:href="@{'/user/contacts'}"
+                        class="bg-blue-600 hover:bg-blue-700 text-white p-6 rounded-xl shadow transition duration-300">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-xl font-semibold">Total Contacts</p>
+                                <p class="text-3xl font-bold mt-2" th:text="${totalContacts}">0</p>
+                            </div>
+                            <i class="fas fa-address-book text-4xl opacity-40"></i>
+                        </div>
+                    </a>
+
+                    <!-- Favorite Contacts -->
+                    <a th:href="@{'/user/contacts/favorites'}"
+                        class="bg-yellow-500 hover:bg-yellow-600 text-white p-6 rounded-xl shadow transition duration-300">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-xl font-semibold">Favorites</p>
+                                <p class="text-3xl font-bold mt-2" th:text="${favoriteContacts}">0</p>
+                            </div>
+                            <i class="fas fa-star text-4xl opacity-40"></i>
+                        </div>
+                    </a>
+
+                    <!-- Account Status -->
+                    <div class="bg-green-600 text-white p-6 rounded-xl shadow">
+                        <p class="text-xl font-semibold">Account</p>
+                        <p class="mt-2 text-lg">
+                            <i class="fas fa-check-circle mr-1 text-white" th:if="${loggedInUser.enabled}"></i>
+                            <i class="fas fa-times-circle mr-1 text-white" th:unless="${loggedInUser.enabled}"></i>
+                            <span th:text="${loggedInUser.enabled ? 'Active' : 'Inactive'}">Status</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- User Info Section -->
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+                        <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-4">👤 Your Details</h2>
+                        <p class="text-sm mb-2"><strong>Email:</strong> <span th:text="${loggedInUser.email}"></span>
+                        </p>
+                        <p class="text-sm mb-2"><strong>Phone:</strong> <span
+                                th:text="${loggedInUser.phoneNumber}"></span>
+                        </p>
+                        <p class="text-sm"><strong>Provider:</strong> <span
+                                th:text="${loggedInUser.provider}">SELF</span>
+                        </p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+                        <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-4">📝 About You</h2>
+                        <p class="text-sm text-gray-700 dark:text-gray-300" th:text="${loggedInUser.about}">
+                            You haven't written anything about yourself yet.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex gap-4 mt-6">
+                    <a th:href="@{'/user/profile'}"
+                        class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm shadow">
+                        <i class="fas fa-user-edit mr-1"></i> Edit Profile
+                    </a>
+                    <a th:href="@{'/user/contacts/add'}"
+                        class="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-lg text-sm shadow">
+                        <i class="fas fa-plus mr-1"></i> Add New Contact
+                    </a>
+                </div>
             </div>
         </div>
-
     </div>
-
-    <script>console.log("profile page");</script>
+    <script>console.log("dashboard page");</script>
 </body>
 
 </html>

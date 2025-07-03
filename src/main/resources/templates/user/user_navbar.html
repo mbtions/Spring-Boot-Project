@@ -1,5 +1,6 @@
 <nav th:fragment="user-navbar" class="">
-    <div class=" flex flex-wrap items-center justify-between mx-auto p-4 sm:pl-64 fixed w-full top-0 left-0 right-0 z-20 bg-white
+
+    <div class="sm:pl-64 flex flex-wrap items-center justify-between mx-auto p-4 fixed w-full top-0 left-0 right-0 z-20 bg-white
      border-gray-900 shadow-sm dark:bg-gray-900">
 
         <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar"
@@ -15,13 +16,13 @@
         </button>
 
         <!-- logo -->
-        <a th:href="@{/home}" class="flex items-center space-x-3 rtl:space-x-reverse">
+        <a th:href="@{/home}" class="flex items-center sm:pl-4 space-x-3 rtl:space-x-reverse">
             <img th:src="@{'/images/3d-contact.png'}" class="h-8" alt="SCM Logo">
             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">SCM</span>
         </a>
         <!-- logo end -->
 
-        <div class="flex gap-1 md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+        <div class="sm:pl-4 flex items-end gap-2 md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
             <button id="theme_change_button"
                 class="bg-gray-200 hover:bg-gray-300 px-3 py-2 rounded-lg dark:bg-gray-700 dark:hover:bg-gray-800"><i
                     class="fa-solid fa-circle-half-stroke"></i> <span>Light</span></button>

@@ -134,4 +134,14 @@ public class ContactServicesImpl implements ContactService {
         return contactRepository.findByUserAndFavoriteTrueAndPhoneNumberContaining(user, phoneNumberKeyword, pageable);
     }
 
+    @Override
+    public long countContactsByUser(User user) {
+        return contactRepository.countByUser(user);
+    }
+
+    @Override
+    public long countFavoriteContactsByUser(User user) {
+        return contactRepository.countByUserAndFavoriteTrue(user);
+    }
+
 }
