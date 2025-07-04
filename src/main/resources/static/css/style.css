@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 .login-with-google-btn {
   transition: background-color 0.3s, box-shadow 0.3s;
 
@@ -31,6 +35,43 @@
       0 0 0 3px #c8dafc;
   }
 
+  &:disabled {
+    filter: grayscale(100%);
+    background-color: #ebebeb;
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.25);
+    cursor: not-allowed;
+  }
+}
+
+.login-with-github-btn {
+  transition: background-color 0.3s, box-shadow 0.3s;
+
+  padding: 12px 16px 12px 42px;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.25);
+
+  color: #757575;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIC0zLjUgMjU2IDI1NiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWluWU1pbiBtZWV0IiBmaWxsPSIjMDAwMDAwIj48ZyBpZD0iU1ZHUmVwb19iZ0NhcnJpZXIiIHN0cm9rZS13aWR0aD0iMCI+PC9nPjxnIGlkPSJTVkdSZXBvX3RyYWNlckNhcnJpZXIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PC9nPjxnIGlkPSJTVkdSZXBvX2ljb25DYXJyaWVyIj4gPGcgZmlsbD0iIzE2MTYxNCI+IDxwYXRoIGQ9Ik0xMjcuNTA1IDBDNTcuMDk1IDAgMCA1Ny4wODUgMCAxMjcuNTA1YzAgNTYuMzM2IDM2LjUzNCAxMDQuMTMgODcuMTk2IDEyMC45OSA2LjM3MiAxLjE4IDguNzEyLTIuNzY2IDguNzEyLTYuMTM0IDAtMy4wNC0uMTE5LTEzLjA4NS0uMTczLTIzLjczOS0zNS40NzMgNy43MTMtNDIuOTU4LTE1LjA0NC00Mi45NTgtMTUuMDQ0LTUuOC0xNC43MzgtMTQuMTU3LTE4LjY1Ni0xNC4xNTctMTguNjU2LTExLjU2OC03LjkxNC44NzItNy43NTIuODcyLTcuNzUyIDEyLjgwNC45IDE5LjU0NiAxMy4xNCAxOS41NDYgMTMuMTQgMTEuMzcyIDE5LjQ5MyAyOS44MjggMTMuODU3IDM3LjEwNCAxMC42IDEuMTQ0LTguMjQyIDQuNDQ5LTEzLjg2NiA4LjA5NS0xNy4wNS0yOC4zMi0zLjIyNS01OC4wOTItMTQuMTU4LTU4LjA5Mi02My4wMTQgMC0xMy45MiA0Ljk4MS0yNS4yOTUgMTMuMTM4LTM0LjIyNC0xLjMyNC0zLjIxMi01LjY4OC0xNi4xOCAxLjIzNS0zMy43NDMgMCAwIDEwLjcwNy0zLjQyNyAzNS4wNzMgMTMuMDcgMTAuMTctMi44MjYgMjEuMDc4LTQuMjQyIDMxLjkxNC00LjI5IDEwLjgzNi4wNDggMjEuNzUyIDEuNDY0IDMxLjk0MiA0LjI5IDI0LjMzNy0xNi40OTcgMzUuMDI5LTEzLjA3IDM1LjAyOS0xMy4wNyA2Ljk0IDE3LjU2MyAyLjU3NCAzMC41MzEgMS4yNSAzMy43NDMgOC4xNzUgOC45MjkgMTMuMTIyIDIwLjMwMyAxMy4xMjIgMzQuMjI0IDAgNDguOTcyLTI5LjgyOCA1OS43NTYtNTguMjIgNjIuOTEyIDQuNTczIDMuOTU3IDguNjQ4IDExLjcxNyA4LjY0OCAyMy42MTIgMCAxNy4wNi0uMTQ4IDMwLjc5MS0uMTQ4IDM0Ljk5MSAwIDMuMzkzIDIuMjk1IDcuMzY5IDguNzU5IDYuMTE3IDUwLjYzNC0xNi44NzkgODcuMTIyLTY0LjY1NiA4Ny4xMjItMTIwLjk3M0MyNTUuMDA5IDU3LjA4NSAxOTcuOTIyIDAgMTI3LjUwNSAwIj48L3BhdGg+PHBhdGggZD0iTTQ3Ljc1NSAxODEuNjM0Yy0uMjguNjMzLTEuMjc4LjgyMy0yLjE4NS4zODktLjkyNS0uNDE2LTEuNDQ1LTEuMjgtMS4xNDUtMS45MTYuMjc1LS42NTIgMS4yNzMtLjgzNCAyLjE5Ni0uMzk2LjkyNy40MTUgMS40NTUgMS4yODcgMS4xMzQgMS45MjMiPjwvcGF0aD48cGF0aCBkPSJNNTQuMDI3IDE4Ny4yM2MtLjYwOC41NjQtMS43OTcuMzAyLTIuNjA0LS41ODktLjgzNC0uODg5LS45OS0yLjA3Ny0uMzczLTIuNjUuNjI3LS41NjMgMS43OC0uMyAyLjYxNi41OS44MzQuODk5Ljk5NiAyLjA4LjM2IDIuNjUiPjwvcGF0aD48cGF0aCBkPSJNNTguMzMgMTk0LjM5Yy0uNzgyLjU0My0yLjA2LjAzNC0yLjg0OS0xLjEtLjc4MS0xLjEzMy0uNzgxLTIuNDkzLjAxNy0zLjAzOC43OTItLjU0NSAyLjA1LS4wNTUgMi44NSAxLjA3OC43OCAxLjE1My43OCAyLjUxMy0uMDE5IDMuMDY5Ij48L3BhdGg+PHBhdGggZD0iTTY1LjYwNiAyMDIuNjgzYy0uNjk5Ljc3LTIuMTg3LjU2NC0zLjI3Ny0uNDg4LTEuMTE0LTEuMDI4LTEuNDI1LTIuNDg3LS43MjQtMy4yNTguNzA3LS43NzIgMi4yMDQtLjU1NSAzLjMwMi40ODggMS4xMDcgMS4wMjYgMS40NDUgMi40OTYuNyAzLjI1OCI+PC9wYXRoPjxwYXRoIGQ9Ik03NS4wMSAyMDUuNDgzYy0uMzA3Ljk5OC0xLjc0MSAxLjQ1Mi0zLjE4NSAxLjAyOC0xLjQ0Mi0uNDM3LTIuMzg2LTEuNjA3LTIuMDk1LTIuNjE2LjMtMS4wMDUgMS43NC0xLjQ3OCAzLjE5NS0xLjAyNCAxLjQ0LjQzNSAyLjM4NiAxLjU5NiAyLjA4NiAyLjYxMiI+PC9wYXRoPjxwYXRoIGQ9Ik04NS43MTQgMjA2LjY3Yy4wMzYgMS4wNTItMS4xODkgMS45MjQtMi43MDUgMS45NDMtMS41MjUuMDMzLTIuNzU4LS44MTgtMi43NzQtMS44NTIgMC0xLjA2MiAxLjE5Ny0xLjkyNiAyLjcyMS0xLjk1MSAxLjUxNi0uMDMgMi43NTguODE1IDIuNzU4IDEuODYiPjwvcGF0aD48cGF0aCBkPSJNOTYuMjI4IDIwNi4yNjdjLjE4MiAxLjAyNi0uODcyIDIuMDgtMi4zNzcgMi4zNi0xLjQ4LjI3LTIuODUtLjM2My0zLjAzOS0xLjM4LS4xODQtMS4wNTIuODktMi4xMDUgMi4zNjctMi4zNzggMS41MDgtLjI2MiAyLjg1Ny4zNTUgMy4wNDkgMS4zOTgiPjwvcGF0aD48L2c+PC9nPjwvc3ZnPg==);
+  background-color: white;
+  background-repeat: no-repeat;
+  background-position: 12px 11px;
+  &:hover {
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25);
+  }
+  &:active {
+    background-color: #eeeeee;
+  }
+  &:focus {
+    outline: none;
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25),
+      0 0 0 3px #c8dafc;
+  }
   &:disabled {
     filter: grayscale(100%);
     background-color: #ebebeb;

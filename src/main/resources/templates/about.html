@@ -1,21 +1,56 @@
+<!--
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en"
     th:replace="~{base :: parent(~{::#about_content}, ~{::title}, ~{::script})}">
 
 <head>
-    <title>About</title>
-</head>
+    <title>About | Smart Contact Manager</title>
+</head> 
 
-<body>
-    <div id="about_content">
-        <section>
-            <h1 class="p-4 text-3xl text-center">Welcome to About Page</h1>
-        </section>
+<body> -->
+<!-- <div  id="about" class="max-w-5xl mx-auto px-4 py-8"> -->
+<section th:fragment="about" id="about" class="min-h-screen bg-gray-100 dark:bg-gray-800 px-6 flex items-center">
+    <div class="max-w-5xl mx-auto text-center">
+        <h2 class="text-4xl font-bold text-gray-800 dark:text-white mb-4">About SCM</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+            Smart Contact Manager is a modern web application built with Spring Boot, Thymeleaf, and Tailwind
+            CSS.
+            It helps you keep your contacts organized, accessible, and secure – all from a simple and elegant
+            dashboard.
+        </p>
     </div>
+</section>
 
+<!-- <section class="bg-white dark:bg-gray-900 rounded-2xl shadow p-6 md:p-10">
+            <h1 class="text-4xl font-bold text-center text-gray-800 dark:text-white mb-6">
+                About Smart Contact Manager
+            </h1>
+
+            <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+                Smart Contact Manager (SCM) is a modern web-based application that empowers users to efficiently manage
+                their personal and professional contacts. With an intuitive interface, secure authentication, and
+                real-time features, SCM helps users keep track of their connections with ease.
+            </p>
+
+            <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 text-base space-y-2 mb-6">
+                <li>👥 Add, update, and delete contacts effortlessly</li>
+                <li>⭐ Mark important contacts as favorites</li>
+                <li>🔒 Secure login with session management and Google OAuth</li>
+                <li>📁 Upload and manage profile and contact pictures (via Cloudinary)</li>
+                <li>🌗 Supports dark and light themes for better accessibility</li>
+            </ul>
+
+            <p class="text-base text-gray-500 dark:text-gray-400">
+                Built with <span class="font-medium text-gray-800 dark:text-white">Spring Boot</span>,
+                <span class="font-medium text-gray-800 dark:text-white">Thymeleaf</span>, and
+                <span class="font-medium text-gray-800 dark:text-white">Tailwind CSS</span>.
+            </p>
+        </section> -->
+<!-- </div> -->
+<!-- 
     <script>
-        console.log("about page");
+        console.log("About page loaded");
     </script>
 </body>
 
-</html>
+</html> -->
